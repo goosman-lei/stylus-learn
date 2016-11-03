@@ -1,0 +1,86 @@
+body
+    color: white
+
+textarea, input
+    border: 1px solid #eee
+
+foo bar baz
+> input
+    border: 1px solid
+
+foo bar baz,
+form input,
+> a
+    border: 1px solid
+
+textarea
+input
+    color: #A7A7A7
+    &:hover
+        color: #000
+
+box-shadow()
+    --webkit-box-shadow arguments
+    --box-shadow arguments
+    box-shadow arguments
+    html.ie8 &,
+    html.ie7 &,
+    html.ie6 &
+        border: 2px solid arguments[length(arguments) - 1]
+
+body
+    #login
+        box-shadow: 1px 1px 3px #EEE
+
+.foo[title*='\&']
+    width: 5px
+
+.foo
+    &__bar
+        width: 10px
+
+        ^[0]:hover ^[1]:hover &
+            width: 20px
+
+.foo
+    &_bar
+        &_baz
+            width: 10px
+
+            ^[-1]:hover &
+                width: 20px
+
+.foo
+    & .bar
+        width: 10px
+
+        ^[0]:hover ^[1..-1]
+            with: 20px
+
+.block
+    &__element
+        ~/:hover &
+            color: red
+
+.foo
+    .bar
+        width: 10px
+
+        &,
+        ../ .baz
+            height: 10px
+
+textarea
+input
+    color #A7A7A7
+    &:hover,
+    /.is-hovered
+        color: #000
+
+{selector('.a', '.b', '.c, .d')}
+    color: red
+    content: selector()
+    content: selectors()
+
+.foo
+    filter: unquote('progid:DXImageTransform.Microsoft.BasicImage(rotation=1)')
