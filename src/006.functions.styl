@@ -1,0 +1,136 @@
+add(a, b)
+    a + b
+
+body
+    padding: add(10px, 5)
+
+add(a, b = a)
+    a + b
+
+body
+    padding: add(10px)
+
+add(a, b = unit(a, px))
+    a + b
+
+body
+    padding: add(10)
+
+subtract(a, b)
+    a - b
+
+body
+    padding: subtract(b: 10, a: 25)
+
+add(a, b = 2)
+    a = unit(a, px)
+    b = unit(b, px)
+    a + b
+
+body
+    padding: add(15%, 10deg)
+
+sizes()
+    15px 10px
+
+body
+    content: sizes()[0]
+    content: sizes()
+
+swap(a, b)
+    (b a)
+
+body
+    content: swap(1, 2)
+
+stringish(val)
+    if val is a 'string' or val is a 'ident'
+        yes
+    else
+        no
+
+body
+    content: stringish(0)
+    content: stringish('yay')
+    content: stringish(yay)
+
+compare(a, b)
+    if a > b
+        higher
+    else if a < b
+        lower
+    else
+        equal
+
+body
+    content: compare(1, 2)
+    content: compare(1, 1)
+    content: compare(3, 2)
+
+/* function alias */
+add(a, b)
+    a + b
+
+plus = add
+
+body
+    content: plus(1, 2)
+
+/* dynamic call */
+add(a, b)
+    a + b
+
+sub(a, b)
+    a - b
+
+invoke(a, b, fn)
+    fn(a, b)
+
+body
+    content: invoke(5, 10, add)
+    content: invoke(5, 10, sub)
+    content: invoke(5, 10, 'add')
+    content: invoke(5, 10, 'sub')
+
+/* anonymous function */
+
+sort(list, fn = null)
+    if fn == null
+        fn = @(a, b) {
+            a > b
+        }
+
+    for $i in 1..length(list) - 1
+        for $j in 0..$i - 1
+            if fn(list[$j], list[$i])
+                $tmp = list[$i]
+                list[$i] = list[$j]
+                list[$j] = $tmp
+    return list
+
+body
+    content: sort(5 3 6 1 2 4)
+    content: sort('e' 'c' 'f' 'a' 'b' 'd', @(a, b) {
+        a < b
+    })
+
+/* arguments */
+sum()
+    n = 0
+    for num in arguments
+        n = n + num
+
+body
+    content: sum(1, 2, 3, 4, 5)
+
+/* hash */
+get(hash, key)
+    return pair[1] if pair[0] == key for pair in hash
+
+hash = (one 1) (two 2) (three 3)
+
+body
+    content: get(hash, one)
+    content: get(hash, two)
+    content: get(hash, three)
+    content: get(hash, something)

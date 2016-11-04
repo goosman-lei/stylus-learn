@@ -1,0 +1,14 @@
+iter()
+    for v, k in arguments
+        content: "key: " + k + " value: " + v
+
+body
+    iter(1, 2, 3)
+
+iter(two)
+    content: "two is: %s" % two
+    for v, k in arguments
+        content: "key: " + k + " value: " + v
+
+body
+    iter(1, two: 2, 3)

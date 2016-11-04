@@ -1,0 +1,66 @@
+border-radius(n)
+    -webkit-border-radius: n
+    -moz-border-radius: n
+    -border-radius: n
+
+form input[type=button]
+    border-radius: 5px
+
+support-for-ie ?= true
+
+opacity(n)
+    opacity: n
+    if support-for-id
+        filter: unquote('progid:DXImageTransform.Microsoft.Alpha(Opacity=' + round(n * 100) + ')')
+
+#logo
+    &:hover
+        opacity: 0.5
+
+stripe(even = #fff, odd = #eee)
+    tr
+        background-color: odd
+        &.even
+        &:nth-child(even)
+            background-color: even
+
+table
+    stripe()
+    td
+        padding 4px 10px
+
+table#users
+    stripe(#303030, #494848)
+    td
+        color white
+
+
+foo()
+    .bar
+        {block}
+        {block}
+        color: red
+
++foo()
+    width: 10px
+
++foo()
+    height: 20px
+
+.foo
+    foo()
+
+inline-list()
+    li
+        display: inline
+
+comma-list()
+    inline-list()
+    li
+        &:after
+            content: ', '
+        &:last-child:after
+            content: ''
+
+ul
+    comma-list()

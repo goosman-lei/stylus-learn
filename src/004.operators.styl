@@ -1,0 +1,129 @@
+/*
+Operator Precedence
+    .
+    []
+    ! ~ + -
+    is defined
+    ** * / %
+    + -
+    ... ..
+    <= >= < >
+    in
+    == is != is not isnt
+    is a
+    && and || or
+    ?:
+    = := ?= += -= *= /= %=
+    not
+    if unless
+*/
+
+/* unary operators: ! not - + ~ */
+.unary-operators
+    content: !0
+    content: !!0
+    content: !1
+    content: !!5px
+    content: -5px
+    content: --5px
+    content: not true
+    content: not not true
+
+/* list */
+list = one two three
+.list
+    content: list[0]
+
+/* tuple */
+add(a, b)
+    if a is a 'unit' and b is a 'unit'
+        a + b
+    else
+        (error 'a and b must be units!')
+
+body
+    padding add(1, 5)
+    padding add('1px', '5px')
+    padding add(1, '5')
+    padding add(1, '5')[0]
+    padding add(1, '5')[0] == error
+    padding add(1, '5')[1]
+
+if (val = add(1, '5'))[0] == error
+    // error(val[1])
+
+/* range */
+.range
+    content: 1..5
+    content: 1...5
+    content: 5..1
+
+/* additive: + - */
+.additive
+    content: 15px - 5px
+    content: 5 - 2
+    content: 5in - 50mm
+    content: 5s - 1000ms
+    content: 20mm + 4in
+    content: 'foo ' + 'bar'
+    content: 'num ' + 15
+
+/* multiplicative: / * % */
+.multiplicative
+    content: 2000ms + (1s * 2)
+    content: 5s / 2
+    content: 4 % 2
+    content: 14px / 1.5
+    content: (14px / 1.5)
+
+/* exponent: ** */
+.exponent
+    content: 2 ** 8
+
+/* equality & relational: == != >= <= > < */
+var_a = 'a'
+var_b = 'a'
+.relational
+    content: 5 == 5
+    content: 10 > 5
+    content: #fff == #fff
+    content: true == false
+    content: wahoo == yay
+    content: wahoo == wahoo
+    content: "test" == "test"
+    content: true is true
+    content: 'hey' is not 'bye'
+    content: 'hey' isnt 'bye'
+    content: (foo bar) == (foo bar)
+    content: (1 2 3) == (1 2 3)
+    content: (1 2 3) == (3 2 1)
+    content: (1 2 3) == (1 1 3)
+    content: var_a == var_b
+
+/* existence operator: in */
+nums = 1 2 3
+.existence
+    content: 1 in nums
+    content: 5 in nums
+
+/* conditional assignment: ?= := */
+color_1 := white
+color_2 ?= white
+.conditional
+    color: color_1
+    color: color_2
+    color: color is defined ? color : white
+
+body
+    n = 5
+    foo: (n)em
+    foo: (n)%
+    foo: (n + 5)%
+    foo: (n * 5)px
+    foo: unit(n + 5, '%')
+    foo: unit(5 + 180 / 2, deg)
+
+/* super NiuBiDiaoZhaTian: sprintf */
+.sprintf
+    content: 'X::Microsoft::Crap(%s)' % #fc0
+    content: s('-webkit-gradient(%s, %s, %s)' % (linear (0 0) (0 100%)))

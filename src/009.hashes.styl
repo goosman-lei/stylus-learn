@@ -1,0 +1,25 @@
+foo = {
+    bar: baz,
+    baz: raz
+}
+foo.bat = haha
+foo["&:hover"] = {
+    padding: 0
+}
+foo.basss = kkk
+remove(foo, 'basss')
+
+bar = {
+    a: 1
+    b: 2
+}
+
+merge(foo, bar)
+
+body
+    content: foo.bar
+    content: foo.bat
+    {foo}
+    content: keys(foo)
+    content: values(foo)
+    content: length(foo)
